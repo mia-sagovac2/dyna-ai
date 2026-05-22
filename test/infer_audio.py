@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Inference script: Classify new audio files using the trained model.
-Converts WAV files to spectrograms and predicts whether they contain vehicles or background.
+Ovo je skripta za pokretanje navidenih testova na modelu. 
+Može se koristiti za evaluaciju na testnom i validacijskom skupu, kao i za testiranje pojedinačnih spektrograma.
 """
 
 import os
@@ -14,22 +14,16 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from pathlib import Path
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
 
 MODEL_PATH = "../vehicle_detector_model.h5"
 FRAME_SIZE = 512
 HOP_SIZE = 64
 
-# ============================================================================
-# FUNCTIONS
-# ============================================================================
 
 def load_model(model_path):
     """Load the trained model"""
     if not os.path.exists(model_path):
-        print(f"✗ Model not found at {model_path}")
+        print(f"!! Model not found at {model_path}")
         print("  Run 'python3 run_all.py' first to train the model")
         return None
     
@@ -38,25 +32,20 @@ def load_model(model_path):
     return model
 
 def audio_to_spectrogram(audio_path):
-    """Convert audio file to spectrogram image"""
     try:
-        # Load audio
         audio, sr = librosa.load(audio_path, sr=None)
         
-        # Generate mel-spectrogram
         mel_spec = librosa.feature.melspectrogram(
             y=audio, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_SIZE
         )
         log_mel = librosa.power_to_db(mel_spec, ref=np.max)
         
-        # Convert to image
         plt.figure(figsize=(5, 3))
         librosa.display.specshow(log_mel, sr=sr, hop_length=HOP_SIZE, y_axis='mel')
         plt.axis('off')
         plt.savefig('temp_spec.png', bbox_inches='tight', pad_inches=0)
         plt.close()
         
-        # Load and preprocess image
         img = cv2.imread('temp_spec.png')
         if img is None:
             return None
@@ -65,7 +54,6 @@ def audio_to_spectrogram(audio_path):
         img = cv2.resize(img, (223, 163))
         img = np.array(img, dtype='float32') / 255.0
         
-        # Clean up
         os.remove('temp_spec.png')
         
         return img
@@ -77,15 +65,12 @@ def predict_audio(model, audio_path):
     """Predict if audio contains vehicle or background noise"""
     print(f"\nProcessing: {audio_path}")
     
-    # Convert to spectrogram
     spec_img = audio_to_spectrogram(audio_path)
     if spec_img is None:
         return None
     
-    # Add batch dimension
     spec_batch = np.expand_dims(spec_img, axis=0)
     
-    # Make prediction
     prediction = model.predict(spec_batch, verbose=0)[0][0]
     confidence = abs(prediction - 0.5) * 2
     
@@ -101,7 +86,7 @@ def predict_audio(model, audio_path):
 def batch_predict_directory(model, directory_path):
     """Predict on all audio files in a directory"""
     if not os.path.isdir(directory_path):
-        print(f"✗ Directory not found: {directory_path}")
+        print(f"!! Directory not found: {directory_path}")
         return
     
     print(f"\nProcessing all .wav files in {directory_path}...")
@@ -131,9 +116,7 @@ def batch_predict_directory(model, directory_path):
         for result in results[:10]:
             print(f"  {result['label']} ({result['confidence']:.1%}) - {result['audio_path']}")
 
-# ============================================================================
-# MAIN
-# ============================================================================
+
 
 def main():
     print("\n" + "="*60)
