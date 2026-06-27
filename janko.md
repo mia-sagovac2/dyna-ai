@@ -1,13 +1,13 @@
 # HELLO
 
 ## Struktura projekta
-scripts/    -->     sve relevantne skripte
-eda_analiza/    --> analiza cijelog skupa podataka (svih vozila, cijelog dataseta, to je ona stara analiza)
-eda_analiza_solo_vs_solo_comparison/   --> eda analiza, usporeduje cisti bicikl i bicikl sa sumom
-eda_analiza_solo_vs_dir_comparison/ --> eda analiza, usporedcuje cisti bicikl i cijeli dataset bicikala
-fourier_analiza/    --> fourier za pojedini audio file (unijeti path filea na pocetak)
-fourier_separated_audio --> konkretni odvojeni zvuk, bicikl + sum i cisti bicikl i spektogrami za oba
-original_methods/   --> nebitno, dosle sa gitom s kojega sam skidala dataset, mozda bude korisno kasnije za treniranje modela
+* scripts/    -->     sve relevantne skripte
+* eda_analiza/    --> analiza cijelog skupa podataka (svih vozila, cijelog dataseta, to je ona stara analiza)
+* eda_analiza_solo_vs_solo_comparison/   --> eda analiza, usporeduje cisti bicikl i bicikl sa sumom
+* eda_analiza_solo_vs_dir_comparison/ --> eda analiza, usporedcuje cisti bicikl i cijeli dataset bicikala
+* fourier_analiza/    --> fourier za pojedini audio file (unijeti path filea na pocetak)
+* fourier_separated_audio --> konkretni odvojeni zvuk, bicikl + sum i cisti bicikl i spektogrami za oba
+* original_methods/   --> nebitno, dosle sa gitom s kojega sam skidala dataset, mozda bude korisno kasnije za treniranje modela
 
 ## Upute
 1. Skini sa Sharepoint-a cijeli direktorij all_sorted
