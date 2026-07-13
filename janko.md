@@ -237,4 +237,3 @@ Ostala su nam jso dva grafa - mfcc usporedba i frekvencijske zone, mfcc mislim d
 3. Kako protumaciti spektograme i je li moje tumacenje na dobrom tragu? (gubi li se stvarno neki zvuk u slucaju suma, kao da se zvuk stisa tj. gubi)
 4. Kako napraviti da se raspoznavaju sumovi svih oblika (kao sto ovdje vidimo zvuk je pjesma), a ne samo bijeli sum?
 5. Koji su sljedeci koraci?
-
