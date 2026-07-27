@@ -1,0 +1,10 @@
+0 mfcc_0_mean
+1 mfcc_0_std
+2 mfcc_1_mean
+3 mfcc_1_std
+4 mfcc_2_mean
+5 mfcc_2_std
+6 mfcc_3_mean
+7 mfcc_3_std
+8 mfcc_4_mean
+9 mfcc_4_std
