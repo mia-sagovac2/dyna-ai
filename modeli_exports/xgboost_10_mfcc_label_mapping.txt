@@ -1,4 +1,0 @@
-0 BIC
-1 CAR
-2 HEAVY
-3 MC
