@@ -14,5 +14,3 @@ __pycache__/
 dist/
 build/
 data/*
-!data/features_cache/
-!data/features_cache/**
